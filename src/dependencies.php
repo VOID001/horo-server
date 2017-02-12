@@ -17,3 +17,8 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
+
+// Classes
+spl_autoload_register(function ($classname) {
+  require 'classes/'.str_replace('\\', '/', $classname).'.php';
+});
