@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Horo Server API Index</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css?fc=1Nxlcq6">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css?fc=1Nxlcq6">
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>Horo Server API Index</h1>
+    </div>
+    <p>This server as the following APIs:</p>
+    <ul>
+      <?php foreach ($apis as $name => $info) { ?>
+      <li><a href="/api/v0/<?= $name ?>"><?= implode(', ', $info['methods']) ?> /api/v0/<?= $name ?></a></li>
+      <?php } ?>
+    </ul>
+  </body>
+</html>
