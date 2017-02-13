@@ -26,5 +26,15 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+// Bootstrap EloquentORM
+
+$container = new \Illuminate\Container\Container;
+$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
+$conn = $connFactory->make($settings['settings']['db']);
+$resolver = new \Illuminate\Database\ConnectionResolver();
+$resolver->addConnection('default', $conn);
+$resolver->setDefaultConnection('default');
+\Illuminate\Database\Eloquent\Model::setConnectionResolver($resolver);
+
 // Run app
 $app->run();
