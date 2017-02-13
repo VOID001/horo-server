@@ -35,6 +35,7 @@ $mw = function($request, $response, $next) {
         // Request too frequently
         $user->pending_time = $user->pending_time * 2;
         $user->last_request_time = time();
+        $user->horo_love_degree -= 5;
         $user->update();
         $resp = array("code" => 400, "message" => "request too frequently");
         return $response->withJson($resp);
@@ -51,7 +52,7 @@ $horoCare = function($request, $response, $next) {
     $id = Server::getMachineID($request);
     $user = User::find($id);
 
-    $user->horo_love_degree = $user->horo_love_degree + (rand(3, 10) * 1.0 / 10);
+    $user->horo_love_degree = $user->horo_love_degree + (rand(3, 10) * 1.0 / 100);
     $user->update();
     $response= $next($request, $response);
     return $response;
@@ -89,4 +90,4 @@ $app->group('/api', function () {
 
     });
 
-})->add($mw)->add($horoCare);
+})->add($horoCare)->add($mw);
