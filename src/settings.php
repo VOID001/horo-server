@@ -15,5 +15,14 @@ return [
             'path' => __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
+
+        //Eloquent settings
+        'db' => [
+            'driver' => 'sqlite',
+            'database' => __DIR__.'/../horo-db.sq3',
+            'charset' => 'utf-8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+        ],
     ],
 ];
