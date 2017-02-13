@@ -13,6 +13,10 @@ class APIHandler {
       'class_name' => 'IndividualStats',
       'methods' => ['GET']
     ],
+    'horo/feed' => [
+      'class_name' => 'FeedHoro',
+      'methods' => ['GET', 'POST']
+    ]
   ];
 
   static function getAllApis () {

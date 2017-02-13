@@ -2,6 +2,9 @@
 
 namespace DevHoro\Server\APIHandler;
 
+use DevHoro\App\User;
+use DevHoro\Server;
+
 class IndividualStats extends Base {
 
   const name = 'individual/stats';
@@ -11,22 +14,18 @@ class IndividualStats extends Base {
   ];
 
   protected $user_id;
-  protected $result_array;
+  protected $result;
 
   function processRequest ($request) {
-    $this->user_id = intval($this->options['user_id']);
-    #$this->result_array = \DevHoro\Server\Database::getUserStats([
-    #  'user_id' => $this->user_id
-    #]);
-    $this->result_array = [
-      'user_id' => $this->user_id,
-      'coins' => 100,
-      'affection' => 0,
-    ];
+    $machineID = Server::getMachineID($request);
+    $user = User::where('machine_id', $machineID)->first();
+    $name = $user->name;
+    $love = $user->horo_love_degree;
+    $this->result  = "机器ID: $machineID\r\n主(shi)人(wu)名称:$name\r\n亲密度: $love\r\n";
   }
 
   function getResponse ($response) {
-    return $response->withJson($this->result_array);
+    return $response->getBody()->write($this->result);
   }
 
 }
