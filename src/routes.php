@@ -4,6 +4,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use DevHoro\App\User;
 use DevHoro\Server;
+use DevHoro\App\Horo;
 
 // Middleware
 
@@ -61,7 +62,12 @@ $horoCare = function($request, $response, $next) {
 // Routes
 
 $app->get('/', function (Request $request, Response $response) {
-    return $response->withRedirect("https://wiki.yoitsu.moe/wiki/Portal:Dev.horo");
+    $horo = Horo::find(1);
+    $users = User::TopNFavoriteUser(10);
+    return $this->renderer->render($response, "index.phtml",[
+        "stats" => $horo->Status(),
+        "users" => $users,
+    ]);
 });
 
 
