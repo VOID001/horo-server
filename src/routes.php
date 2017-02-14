@@ -62,7 +62,7 @@ $horoCare = function($request, $response, $next) {
 // Routes
 
 $app->get('/', function (Request $request, Response $response) {
-    $horo = Horo::find(1);
+    $horo = Horo::all()[0];
     $users = User::TopNFavoriteUser(10);
     return $this->renderer->render($response, "index.phtml",[
         "stats" => $horo->Status(),
