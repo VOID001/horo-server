@@ -11,8 +11,8 @@ use DevHoro\App\Horo;
 $mw = function($request, $response, $next) {
     $id = Server::getMachineID($request);
     if ($id == "") {
-        $resp = array("code" => 403, "message" => "invalid request");
-        return $response->withJson($resp);
+        $resp = array("code" => 400, "message" => "invalid request");
+        return $response->withStatus(400)->withJson($resp);
     }
 
     // Check if the id is registered
@@ -38,8 +38,8 @@ $mw = function($request, $response, $next) {
         $user->last_request_time = time();
         $user->horo_love_degree -= 5;
         $user->update();
-        $resp = array("code" => 400, "message" => "request too frequently");
-        return $response->withJson($resp);
+        $resp = array("code" => 429, "message" => "request too frequent");
+        return $response->withStatus(429)->withJson($resp);
     }
     $user->pending_time = 1;
     $user->last_request_time = time();
