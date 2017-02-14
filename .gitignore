@@ -4,4 +4,4 @@
 .idea
 
 /public/bower_components
-horo-db.sq3
+/db/horo-db.sqlite3

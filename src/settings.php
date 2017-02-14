@@ -19,7 +19,7 @@ return [
         //Eloquent settings
         'db' => [
             'driver' => 'sqlite',
-            'database' => __DIR__.'/../horo-db.sq3',
+            'database' => __DIR__.'/../db/horo-db.sqlite3',
             'charset' => 'utf-8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
