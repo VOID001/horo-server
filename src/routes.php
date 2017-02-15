@@ -73,17 +73,7 @@ $app->get('/', function (Request $request, Response $response) {
 
 $app->group('/api', function () {
 
-    $this->get('[/]', function (Request $request, Response $response) {
-        return $response->withRedirect('/api/v0');
-    });
-
     $this->group('/v0', function () {
-
-        $this->get('[/]', function (Request $request, Response $response) {
-            return $this->renderer->render($response, 'api-index.phtml', [
-                'apis' => DevHoro\Server\APIHandler::getAllApis()
-            ]);
-        });
 
         foreach (DevHoro\Server\APIHandler::getAllApis() as $name => $info) {
             $this->map($info['methods'], '/'.$name, function (Request $request, Response $response, $args) use ($name, $info) {
