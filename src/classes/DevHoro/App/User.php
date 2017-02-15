@@ -19,7 +19,7 @@ class User extends Model
     }
 
     private function score() {
-        return $this->horo_love_degree*0.2 + $this->food_contrib*0.4 + $this->knowlege_contrib*0.2 + $this->clean_contrib*0.2;
+        return $this->affection*0.2 + $this->food_contrib*0.4 + $this->knowlege_contrib*0.2 + $this->clean_contrib*0.2;
     }
 
     public static function TopNFavoriteUser($n) {
@@ -36,7 +36,7 @@ class User extends Model
                 "排名" => $i + 1,
                 "ID" => substr($userarr[$i]->attributes["machine_id"], 0, 7),
                 "主(shi)人(wu)昵称" => $userarr[$i]->user_name,
-                "亲密度" => $userarr[$i]->horo_love_degree,
+                "亲密度" => $userarr[$i]->affection,
                 "总友好度" => $userarr[$i]->score(),
             ];
         }

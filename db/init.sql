@@ -21,7 +21,7 @@ CREATE TABLE activity_log (
 CREATE TABLE user_info (
   machine_id        TEXT UNIQUE,
   user_name         TEXT,
-  horo_love_degree  REAL,
+  affection         REAL,
   food_contrib      REAL,
   knowlege_contrib  REAL,
   clean_contrib     REAL,

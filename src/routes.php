@@ -20,7 +20,7 @@ $mw = function($request, $response, $next) {
     if ($user == NULL) {
         $user = new User;
         $user->machine_id = $id;
-        $user->horo_love_degree = 50;
+        $user->affection = 50;
         $user->pending_time = 1;
         $user->save();
     }
@@ -36,7 +36,7 @@ $mw = function($request, $response, $next) {
         // Request too frequently
         $user->pending_time = $user->pending_time * 2;
         $user->last_request_time = time();
-        $user->horo_love_degree -= 5;
+        $user->affection -= 5;
         $user->update();
         $resp = array("code" => 429, "message" => "request too frequent");
         return $response->withStatus(429)->withJson($resp);
@@ -53,7 +53,7 @@ $horoCare = function($request, $response, $next) {
     $id = Server::getMachineID($request);
     $user = User::find($id);
 
-    $user->horo_love_degree = $user->horo_love_degree + (rand(3, 10) * 1.0 / 100);
+    $user->affection = $user->affection + (rand(3, 10) * 1.0 / 100);
     $user->update();
     $response= $next($request, $response);
     return $response;

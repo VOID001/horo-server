@@ -34,7 +34,7 @@ class FeedHoro extends Base
             $getfeedVal = function($userObj) {
                 $moreHungry = false;
                 // Probability of eat 3
-                $rate =  (0.4 / (1 + exp(-3 * $userObj->horo_love_degree / 100)) - 0.2);
+                $rate =  (0.4 / (1 + exp(-3 * $userObj->affection / 100)) - 0.2);
                 //echo "Rate3: $rate\r\n";
                 if ($rate < 0) {
                     $moreHungry = true;
@@ -45,7 +45,7 @@ class FeedHoro extends Base
 
                 $moreHungry = false;
                 // Probability of eat 2
-                $rate =  (0.6 / (1 + exp(-3 * $userObj->horo_love_degree / 100)) - 0.3);
+                $rate =  (0.6 / (1 + exp(-3 * $userObj->affection / 100)) - 0.3);
                 //echo "Rate2: $rate\r\n";
                 if ($rate < 0) {
                     $moreHungry = true;
@@ -54,7 +54,7 @@ class FeedHoro extends Base
                     return $moreHungry ? -2: 2;
 
                 $moreHungry = false;
-                $rate =  (1 / (1 + exp(-3 * $userObj->horo_love_degree / 100)) - 0.5);
+                $rate =  (1 / (1 + exp(-3 * $userObj->affection / 100)) - 0.5);
                 //echo "Rate1: $rate\r\n";
                 if ($rate < 0) {
                     $moreHungry = true;
@@ -81,7 +81,7 @@ class FeedHoro extends Base
 
             // Feed will increase the love_degree
             $userObj->food_contrib += $feedVal;
-            $userObj->horo_love_degree += $feedVal / 2.0;
+            $userObj->affection += $feedVal / 2.0;
             $userObj->update();
 
             $this->result = "";
