@@ -17,7 +17,7 @@ class IndividualStats extends Base {
         $machineID = Server::getMachineID($request);
         $user = User::where('machine_id', $machineID)->first();
         $name = $user->name;
-        $love = $user->horo_love_degree;
+        $love = $user->affection;
         $food = $user->food_contrib;
         $clean = $user->clean_contrib;
         $knowlege = $user->knowlege_contrib;

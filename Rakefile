@@ -13,6 +13,12 @@ namespace 'db' do
     end
   end
 
+  task :drop do
+    if File.exist? 'db/horo-db.sqlite3'
+      sh 'rm db/horo-db.sqlite3'
+    end
+  end
+
 end
 
 namespace 'assets' do
