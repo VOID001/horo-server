@@ -86,4 +86,4 @@ $app->group('/api', function () {
 
     });
 
-})->add($horoCare)->add($mw);
+})/*add($horoCare)*/->add($mw);
