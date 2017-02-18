@@ -4,6 +4,8 @@ namespace DevHoro\App;
 use DevHoro\App\User as User;
 use DevHoro\App\Horo as Horo;
 
+define('MAX_HUNGER', 500);
+define('MIN_HUNGER', -500);
 
 class HoroLogic
 {
@@ -24,7 +26,7 @@ class HoroLogic
         }
 
         // If you feed horo too much, she will dislike you somehow
-        if ($horo->hunger * 0.3 > $user->food_contrib) {
+        if ((MAX_HUNGER - $horo->hunger) * 0.3 < $user->food_contrib) {
             $feedVal = 0;
             $user->affection -= rand(1, 3000) * 1.0 / 1000;
             $user->save();
@@ -75,7 +77,7 @@ class HoroLogic
         }
 
         // Judge If Horo is sick
-        if ($horo->hunger < -200) {
+        if ($horo->hunger < MIN_HUNGER) {
             $hp_decrease = $horo->hp * (rand(1, 100) * 1.0 / 5000);
             $horo->hp = $horo->hp - $hp_decrease;
             $user->clean_contrib = $user->clean_contrib - $hp_decrease;
