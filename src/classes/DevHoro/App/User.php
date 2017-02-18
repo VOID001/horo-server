@@ -19,7 +19,7 @@ class User extends Model
     }
 
     private function score() {
-        return $this->affection*0.2 + $this->food_contrib*0.4 + $this->knowlege_contrib*0.2 + $this->clean_contrib*0.2;
+        return $this->affection*0.2 + $this->food_contrib*0.3 + $this->knowlege_contrib*0.2 + $this->clean_contrib*0.3;
     }
 
     public static function TopNFavoriteUser($n) {
