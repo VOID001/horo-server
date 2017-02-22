@@ -38,11 +38,11 @@ class FeedHoro extends Base
                 return ;
             }
             for($i = 0; $i < $feedVal; $i++) {
-                $this->result .= "\u{1f60b}";
+                $this->result .= "\u{1f60b}\r\n";
             }
 
             if($this->result == "") {
-                $this->result = "咱现在不想吃东西呐";
+                $this->result = "咱现在不想吃东西呐\r\n";
                 return ;
             }
 
