@@ -35,14 +35,17 @@ class HoroLogic
 
         // Calculate the feedValue
         $getfeedVal = function($userObj) {
+            // random value in [0, 1]
+            $toss = mt_rand() / mt_getrandmax();  
+
             $moreHungry = false;
             // Probability of eat 3
             $rate =  (0.4 / (1 + exp(-3 * $userObj->affection / 100)) - 0.2);
             //echo "Rate3: $rate\r\n";
             if ($rate < 0) {
                 $moreHungry = true;
+                $rate = - $rate;
             };
-            $toss = rand(1, 1000) * 1.0 / 1000;
             if ($toss < $rate)
                 return $moreHungry ? -3: 3;
 
@@ -52,6 +55,7 @@ class HoroLogic
             //echo "Rate2: $rate\r\n";
             if ($rate < 0) {
                 $moreHungry = true;
+                $rate = - $rate;
             };
             if ($toss < $rate)
                 return $moreHungry ? -2: 2;
@@ -61,6 +65,7 @@ class HoroLogic
             //echo "Rate1: $rate\r\n";
             if ($rate < 0) {
                 $moreHungry = true;
+                $rate = - $rate;
             };
             if ($toss < $rate)
                 return $moreHungry ? -1: 1;
