@@ -10,7 +10,7 @@ c = coon.cursor()
 def rd_hunger():
     for ID in c.execute("SELECT id from horo_info "):
         c.execute("SELECT hunger from horo_info WHERE id = ?", ID)
-        hunger = c.fetchone()
+        hunger = c.fetchone()[0]
         hunger -= randint(5, 10)
         c.execute("UPDATE horo_info SET hunger = ? WHERE id = ?", (hunger, ID))
         coon.commit()
