@@ -16,7 +16,7 @@ def rd_hunger():
         hunger -= randint(5, 10)
         c.execute("UPDATE horo_info SET hunger = ? WHERE id = ?", (hunger, ID))
         coon.commit()
-        print("luan ma...")
+        print("锟斤拷")
     coon.close()
 
 def start_timer(sleeptime = 28800):
