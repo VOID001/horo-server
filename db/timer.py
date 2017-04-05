@@ -8,12 +8,15 @@ coon = sqlite3.connect(dbfile)
 c = coon.cursor()
 
 def rd_hunger():
-    for ID in c.execute("SELECT id from horo_info "):
-        c.execute("SELECT hunger from horo_info WHERE id = ?", ID)
+    c.execute("SELECT id from horo_info")
+    for ID in c.fetchall():
+        ID = ID[0]
+        c.execute("SELECT hunger from horo_info WHERE id = ?", (ID,))
         hunger = c.fetchone()[0]
         hunger -= randint(5, 10)
         c.execute("UPDATE horo_info SET hunger = ? WHERE id = ?", (hunger, ID))
         coon.commit()
+        print("luan ma...")
     coon.close()
 
 def start_timer(sleeptime = 28800):
