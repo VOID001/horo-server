@@ -13,7 +13,7 @@ def rd_hunger():
         ID = ID[0]
         c.execute("SELECT hunger from horo_info WHERE id = ?", (ID,))
         hunger = c.fetchone()[0]
-        hunger -= randint(5, 10)
+        hunger += randint(5, 10)
         c.execute("UPDATE horo_info SET hunger = ? WHERE id = ?", (hunger, ID))
         coon.commit()
         print("锟斤拷")
