@@ -1,0 +1,70 @@
+/* fix nav bar on the left*/
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+/* top nav (?) */
+
+nav.top-nav {
+    height:96px;
+    box-shadow:none;
+}
+
+nav.nav-wrapper {
+    left:15%;
+    }
+    
+nav.top-nav a.page-title {
+    line-height:96px;
+    font-size:36px;
+}
+
+header {
+    z-index:100;
+    }
+    
+#slide-out {
+   z-index:99;
+   }
+   
+#slide-out .top {
+   background-color: #ff8f00;
+   height:96px;
+   }
+
+@media only screen and (max-width: 600px) {
+    a.button-collapse.top-nav {
+        left:5%
+    }
+}
+@media only screen and (max-width: 992px) {
+    nav.top-nav {
+        height:72px;
+        box-shadow:none;
+    }
+    nav .nav-wrapper {
+        text-align:center
+    }
+    nav.top-nav a.page-title {
+        line-height:72px;
+        font-size:32px
+}
+}
+
+/* right content */
+main {
+    padding-top:10px;
+    }
+/* enlarge container size on desktop */
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width:85%
+    }
+}
